@@ -15,7 +15,7 @@ document.getElementById('input-search').addEventListener("keyup", (e) => {
     const isEnterPressed = key === 13;
 
     if(isEnterPressed){
-        validateEmptyInput(userName)
+        if(validateEmptyInput(userName)) return;
         getUserData(userName);
     }
 })
@@ -25,7 +25,6 @@ async function getUserData(userName){
     const userResponse = await getUser(userName);
 
     if(userResponse.message === "Not Found"){
-        console.log("NOT FOUND");
         screen.renderNotFound();
         return
     }
