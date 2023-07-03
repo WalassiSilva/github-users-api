@@ -31,7 +31,8 @@ main {
 }
 
 .section {
-    padding: 70px 0;
+    padding: 70px 0;    
+    font-weight: 600;
 }
 
 .container {
@@ -121,6 +122,9 @@ main {
     line-height: 23px;
 }
 
+.container .profile-data .data-numbers {
+    margin-top: 50px;
+}
 /* REPOSITORIES */
 
 .container .profile-data .repositories h2 {
@@ -146,6 +150,52 @@ main {
 .container .profile-data .repositories ul li a:hover {
     background-color: hotpink;
     color: #FFF;
+}
+
+.repositories .repositories-status{
+    margin: 10px 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 3px;
+}
+
+.repositories .status-count{
+    background-color: rgb(95, 72, 177);
+    color: white;
+    padding: 5px;
+    border-radius: 5px;    
+    transition: 0.3s ease-in-out;
+}
+.repositories .status-count:hover{
+    color: rgb(95, 72, 177);
+  background-color: #fff;
+}
+.container .events li {
+    transition: 0.3s ease;
+}
+
+.container .events li:hover{
+    transform: scale(1.05);
+    background-color: rgba(95, 72, 177, 0.2);
+    border-radius: 5px;
+}
+
+.events.section h2 {
+    font-weight: 600;
+}
+
+.events.section ul {
+    text-align: center;
+    padding: 6%;
+}
+
+.events.section li {
+    padding: 15px 0;
+    font-size: 20px;
+}
+
+.commit-message{
+    font-weight: 600;
 }
 
 .container .profile-data.hide{
@@ -179,6 +229,9 @@ main {
 @media (max-width: 425px){
     main {
         padding: 15% 0;
+    }
+    .container .profile-data {
+        padding: 5px;
     }
 
     .container .profile-data .info img {

@@ -1,12 +1,17 @@
 import { getUser } from         './services/user.js'
 import { getRepositories } from './services/repositories.js'
+import { getEvents } from       './services/events.js'
 import { user } from            './objects/user.js'
 import { screen } from          './objects/screen.js'
 
+import { baseUrl} from './variables.js'
+
 document.getElementById('btn-search').addEventListener("click", () => {
     const userName = document.getElementById('input-search').value;
+    
     if(validateEmptyInput(userName)) return;
     getUserData(userName);
+    getEvents(userName);
 })
 
 document.getElementById('input-search').addEventListener("keyup", (e) => {
@@ -17,22 +22,24 @@ document.getElementById('input-search').addEventListener("keyup", (e) => {
     if(isEnterPressed){
         if(validateEmptyInput(userName)) return;
         getUserData(userName);
+        getEvents(userName);
     }
-})
+});
 
 async function getUserData(userName){
     
     const userResponse = await getUser(userName);
+    const repositoriesResponse = await getRepositories(userName);
+    const eventResponse = await getEvents(userName);
 
     if(userResponse.message === "Not Found"){
         screen.renderNotFound();
         return
-    }
-
-    const repositoriesResponse = await getRepositories(userName);
+    }    
 
     user.setInfo(userResponse);
     user.setRepositories(repositoriesResponse);
+    user.setEvents(eventResponse);    
     
     screen.renderUser(user);
 }
@@ -43,4 +50,3 @@ function validateEmptyInput(userName){
         return true;
     }
 }
-
